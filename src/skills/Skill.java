@@ -1,6 +1,6 @@
 package skills;
 
-import characters.Character;
+import characters.Champion;
 
 public abstract class Skill {
     private String name;
@@ -13,7 +13,7 @@ public abstract class Skill {
         this.requiredMp = requiredMp;
     }
 
-    public abstract Character doSkill(Character target);
+    public abstract Champion doSkill(Champion target);
 
     public String getName() {
         return name;
