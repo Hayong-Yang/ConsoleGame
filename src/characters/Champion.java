@@ -27,6 +27,8 @@ public abstract class Champion {
         this.level = 1;
     }
     public abstract void speak();
+    public abstract void injured();
+
     public boolean isAlive() {
         return this.hp > 0;
     };
