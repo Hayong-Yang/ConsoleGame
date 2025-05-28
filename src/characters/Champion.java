@@ -35,6 +35,11 @@ public abstract class Champion {
         return (rand >= 1 && rand <= critical);
     }
 
+    @Override
+    public String toString() {
+        return "이름: " + name + ", Hp/MaxHp: " + hp+"/"+maxHp+", Mp/MaxMp: "+mp+"/"+maxMp +", 공격력: " + power + ", LV: "+ level;
+    }
+
     public int getHp() {
         return hp;
     }
