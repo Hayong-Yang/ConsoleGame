@@ -1,5 +1,6 @@
 package characters;
 
+public abstract class Champion {
 public abstract class Champion
 {
     private int hp;
