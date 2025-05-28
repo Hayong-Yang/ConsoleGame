@@ -14,12 +14,14 @@ public class Slime extends Champion{
 
     @Override
     public void injured() {
-        System.out.println(this.getName() + " 주르륵.. ");
+        System.out.println(this.getName() + "이 공격받다. 주르륵.. ");
     }
 
     public static void main(String[] args) {
         Slime s = new Slime(5,5,5,5,5,5,"슬라임");
         s.setLevel(5);
         System.out.println(s);
-    }
-}
+        s.speak();
+        s.injured();
+    } // main
+} //class
