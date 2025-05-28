@@ -1,6 +1,8 @@
 package skills;
 
+import characters.Champion;
+
 @FunctionalInterface
 public interface Attack {
-    public Character attack(Character target);
+    public Champion attack(Champion target);
 }

@@ -1,6 +1,7 @@
 package characters;
 
-public abstract class Character {
+public abstract class Champion
+{
     private int hp;
     private int mp;
     private int maxHp;
@@ -13,7 +14,7 @@ public abstract class Character {
     private int level;
     private String name;
 
-    public Character (int maxHp, int maxMp, int power, int defence, int critical, int exp, String name ) {
+    public Champion(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name ) {
         this.maxHp = maxHp;
         this.maxMp = maxMp;
         this.power = power;
@@ -27,6 +28,8 @@ public abstract class Character {
         this.level = 1;
     }
     public abstract void speak();
+    public abstract void injured();
+
     public boolean isAlive() {
         return this.hp > 0;
     };
