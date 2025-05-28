@@ -13,7 +13,7 @@ public abstract class Skill {
         this.requiredMp = requiredMp;
     }
 
-    public abstract Champion doSkill(Champion target);
+    public abstract void doSkill(Champion player, Champion target);
 
     public String getName() {
         return name;
