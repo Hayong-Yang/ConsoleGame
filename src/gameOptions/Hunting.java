@@ -44,26 +44,26 @@ public class Hunting {
 
         switch (choice) {
             case 1 -> {
-                player.defaultattack(monster); // 직접 객체의 attack 사용
+                player.defaultAttack.attack(monster); // 직접 객체의 attack 사용
             }
             case 2 -> {
                 useSkill(player, monster);
             }
             default -> {
                 System.out.println("잘못된 입력입니다. 일반 공격을 수행합니다.");
-                player.defaultattack(monster); // 기본 공격
+                player.defaultAttack.attack(monster); // 기본 공격
             }
         }
     }
 
     private void monsterTurn(Champion monster, Champion player) {
-        monster.defaultattack(player); // 몬스터도 직접 attack
+        monster.defaultAttack.attack(player); // 몬스터도 직접 attack
     }
 
     private void useSkill(Champion player, Champion target) {
         if (player.getSkillsList().isEmpty()) {
             System.out.println("스킬이 없습니다. 일반 공격으로 대체됩니다.");
-            player.defaultattack(target);
+            player.defaultAttack.attack(target);
             return;
         }
 
