@@ -17,4 +17,6 @@ public class Warrior extends Champion
 
     public Attack defaultAttack = (target) -> { target.setHp(target.getHp() - this.getPower()); return target; };
 
+
+
 }// end of class{};
