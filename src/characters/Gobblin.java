@@ -17,7 +17,7 @@ public class Gobblin extends Champion {
     }
 
     public static void main(String[] args) {
-        Gobblin s = new Gobblin(5,5,5,5,5,5,"고블린");
+        Gobblin s = new Gobblin(40,5,5,3,5,54,"고블린");
         s.setLevel(5);
         System.out.println(s);
         s.speak();

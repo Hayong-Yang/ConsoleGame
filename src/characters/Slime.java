@@ -18,8 +18,8 @@ public class Slime extends Champion{
     }
 
     public static void main(String[] args) {
-        Slime s = new Slime(5,5,5,5,5,5,"슬라임");
-        s.setLevel(5);
+        Slime s = new Slime(20,5,2,1,2,35,"슬라임");
+        s.setLevel(1);
         System.out.println(s);
         s.speak();
         s.injured();
