@@ -47,5 +47,6 @@ public class Rest {
 
         System.out.println("HP 회복: +" + recoverHp + " → 현재 HP: " + c.getHp());
         System.out.println("MP 회복: +" + recoverMp + " → 현재 MP: " + c.getMp());
+
     }
 }
