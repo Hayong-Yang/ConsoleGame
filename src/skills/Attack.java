@@ -4,5 +4,5 @@ import characters.Champion;
 
 @FunctionalInterface
 public interface Attack {
-    public Champion attack(Champion target);
+    public void attack(Champion target);
 }

@@ -2,9 +2,9 @@ package skills;
 
 import characters.Champion;
 
-public class SlowHeal extends Skill
+public class FastHeal extends Skill
 {
-    public SlowHeal()
+    public FastHeal()
     {
         super("Slow Heal", 0, 5);
     }

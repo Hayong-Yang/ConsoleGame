@@ -1,24 +1,19 @@
 package main;
 
-import characters.Magician;
+import characters.Champion;
+import characters.Warrior;
 import skills.Attack;
-import skills.FireBall;
-import skills.Skill;
-
-import javax.lang.model.util.SimpleTypeVisitor6;
 
 public class Play
 {
+    public static int gameTurn = 0;
+
     public static void main(String[] args)
     {
-        Magician magician = new Magician(100, 100, 10, 5, 100, 0, "minsu");
-        Magician hayong = new Magician(100, 100, 10, 5, 0, 0, "hayong");
+        Champion minsu = new Warrior(100, 100, 10, 100, 100, 100, "minsu", gameTurn);
+        Champion hayong = new Warrior(100, 100, 100, 5, 100, 100, "hayong", gameTurn);
 
-        Skill fireBall = new FireBall();
-
-        fireBall.doSkill(magician, hayong);
+        minsu.defaultAttack.attack(hayong);
         System.out.println(hayong);
-
-
     }// main
 } //class
