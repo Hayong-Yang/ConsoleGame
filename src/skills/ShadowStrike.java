@@ -16,7 +16,7 @@ public class ShadowStrike extends Skill {
         }
 
         boolean isCrit = player.isCritical();
-        double multiplier = isCrit ? 2.0 : 1.0;
+        double multiplier = isCrit ? 1.6 : 1.0;
         int damage = (int)((player.getPower() * 0.3) * this.getDamage() * multiplier);
 
         target.setHp(target.getHp() - damage);
