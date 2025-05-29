@@ -106,6 +106,10 @@ public abstract class Champion
     public String toString() {
         return "이름: " + name + ", Hp/MaxHp: " + hp+"/"+maxHp+", Mp/MaxMp: "+mp+"/"+maxMp +", 공격력: " + power + ", LV: "+ level;
     }
+    public void setSkillPoint(int skillPoint)
+    {
+        this.skillPoint = skillPoint;
+    }
 
     public int getHp() {
         return hp;
@@ -216,5 +220,4 @@ public abstract class Champion
         this.name = name;
     }
 
-    public abstract void injured();
 } //Character class
