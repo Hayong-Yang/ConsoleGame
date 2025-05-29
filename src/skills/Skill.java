@@ -69,4 +69,6 @@ public abstract class Skill
 
         System.out.println(this.getName() + " level up! (" + this.getSkillLevel() + ")");
     }
+  
 } // class
+
