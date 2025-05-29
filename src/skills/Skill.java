@@ -58,4 +58,15 @@ public abstract class Skill
     {
         this.requiredMp = requiredMp;
     }
+
+    public void skillLevelUp(Champion player)
+    {
+        this.skillLevel++;
+        this.damage += 5;
+        this.requiredMp += 10;
+
+        player.setSkillPoint( player.getSkillPoint() - 1);
+
+        System.out.println(this.getName() + " level up! (" + this.getSkillLevel() + ")");
+    }
 } // class
