@@ -2,8 +2,6 @@ package characters;
 
 import skills.Attack;
 
-import java.awt.image.AbstractMultiResolutionImage;
-
 public class Magician extends Champion
 {
     //constructor

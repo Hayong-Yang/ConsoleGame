@@ -27,8 +27,6 @@ public abstract class Champion {
         this.level = 1;
     }
     public abstract void speak();
-    public abstract void injured();
-
     public boolean isAlive() {
         return this.hp > 0;
     };
@@ -129,4 +127,6 @@ public abstract class Champion {
     public void setName(String name) {
         this.name = name;
     }
+
+    public abstract void injured();
 } //Character class
