@@ -15,7 +15,7 @@ public class Archer extends Champion{
 
     @Override
     public void injured() {
-        System.out.println("싸늘하다. 가슴에 화살이 날아와 꽂힌다!!");
+        System.out.println("싸늘하다. 가슴에 화살이 날아와 꽂힌다...");
 
     }
     public Attack defaultAttack = (target) -> { target.setHp(target.getHp() - this.getPower()); return target; };
