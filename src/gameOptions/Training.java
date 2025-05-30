@@ -3,14 +3,14 @@ package gameOptions;
 import characters.Champion;
 import java.util.Scanner;
 
-public final class Training {
+public class Training {
     public enum TrainingType {
         STRENGTH,
         DEFENCE,
         AGILITY
     }
 
-    private Training() {}
+    public Training() {}
 
     public static void train(Champion champion) {
 
