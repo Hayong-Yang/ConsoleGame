@@ -41,8 +41,8 @@ public abstract class Champion
         this.exp = exp;
         this.maxExp = 100 * gameTurn;
         this.name = name;
-        this.hp = maxHp;
-        this.mp = maxMp;
+        this.hp = this.maxHp;
+        this.mp = this.maxMp;
         this.level = 1;
     }
 
@@ -81,7 +81,7 @@ public abstract class Champion
         int baseDamage = Math.max(this.getPower() - target.getDefence(), 0);
         int damage = this.isCritical() ? baseDamage * 2 : baseDamage;
 
-        target.setHp(target.getHp() - damage);
+        target.setHp(Math.max(target.getHp() - damage, 0));
 
         System.out.printf("💥 %s이(가) %s에게 %d의 피해를 입혔습니다.\n", this.getName(), target.getName(), damage);
     };
@@ -107,11 +107,6 @@ public abstract class Champion
         return skillsList;
     }
 
-    public void takeDotDamage(int damage)
-    {
-        this.setHp(this.getHp() - damage);
-    }
-
     public void setDotted(int count)
     {
         this.restDotCount += count;
@@ -133,7 +128,7 @@ public abstract class Champion
     @Override
     public String toString()
     {
-        return "이름: " + name + ", Hp/MaxHp: " + hp + "/" + maxHp + ", Mp/MaxMp: " + mp + "/" + maxMp + ", 공격력: " + power + ", LV: " + level;
+        return "이름: " + name + ", Hp/MaxHp: " + hp + "/" + maxHp + ", Mp/MaxMp: " + mp + "/" + maxMp + ", 공격력: " + power + ", LV: " + level + ", EXP: " + exp + "/" + maxExp;
     }
 
     public void setSkillPoint(int skillPoint)

@@ -13,7 +13,7 @@ public class ArrowRain extends Skill
     @Override
     public void doSkill(Champion player, Champion target)
     {
-        target.setHp((int) (target.getHp() - (player.getPower() * 0.20) * this.getDamage()));
+        target.setHp((int) (target.getHp() - ( target.getDefence() - (player.getPower() * 0.20) * this.getDamage())));
         player.setMp(player.getMp() - (this.getRequiredMp() + this.getSkillLevel() * 2));
 
     }// end of doSkill();
