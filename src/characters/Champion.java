@@ -1,9 +1,11 @@
 package characters;
 
+import skills.Attack;
 import skills.Skill;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public abstract class Champion
@@ -23,31 +25,36 @@ public abstract class Champion
     private String name;
     private int skillPoint = 0;
 
+    private int restDotCount = 0;
+    private boolean isDotted = false;
+
+
     private ArrayList<Skill> skillsList = new ArrayList<>();
 
-    public Champion(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name)
+    public Champion(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name, int gameTurn)
     {
-        this.maxHp = maxHp;
-        this.maxMp = maxMp;
-        this.power = power;
-        this.defence = defence;
-        this.critical = critical;
+        this.maxHp = maxHp + (int)(maxHp * gameTurn * 0.35);
+        this.maxMp = maxMp + (int)(maxMp * gameTurn * 0.25);
+        this.power = power + (int)(power * gameTurn * 0.3);
+        this.defence = defence + (int)(defence * gameTurn * 0.11);
+        this.critical = critical + (int)(critical * gameTurn * 0.1);
         this.exp = exp;
-        this.maxExp = 100;
+        this.maxExp = 100 * gameTurn;
         this.name = name;
         this.hp = maxHp;
         this.mp = maxMp;
         this.level = 1;
     }
 
-    public ArrayList<Skill> getSkillsList()
+    public List<Skill> getSkillsList()
     {
         return skillsList;
     }
+    public Skill getSkill(int idx) {return this.skillsList.get(idx); }
 
-    public void setSkillsList(ArrayList<Skill> skillsList)
+    public void addSkillsList(Skill skill)
     {
-        this.skillsList = skillsList;
+        this.skillsList.add(skill);
     }
 
     public void addSkill(Skill skill)
@@ -64,30 +71,13 @@ public abstract class Champion
         skillsList.remove(skill);
     }
 
-    public void levelUp(int exp)
-    {
-        this.exp += exp;
-
-        if (this.exp >= maxExp)
-        {
-            int rest = this.maxExp - this.exp;
-            this.exp = rest;
-
-            this.level++;
-            this.maxHp += 10;
-            this.maxMp += 5;
-            this.power += 2;
-            this.defence += 1;
-            this.critical += 1;
-
-            this.maxExp += 100;
-            this.skillPoint ++;
-        }
-    }// end of levelUp();
+    public abstract void levelUp(int exp);
 
     public abstract void speak();
 
     public abstract void injured();
+
+    public Attack defaultAttack = (Champion target) -> target.setHp(this.isCritical() ? (target.getHp() - ((int)(Math.max(this.getPower() - target.getDefence(), 0))) * 2 ): (target.getHp() - ((int)(Math.max(this.getPower() - target.getDefence(), 0)))));
 
     public boolean isAlive()
     {
@@ -100,18 +90,52 @@ public abstract class Champion
         return (rand <= critical);
     }
 
-    public int getSkillPoint() { return skillPoint; }
+    public int getSkillPoint()
+    {
+        return skillPoint;
+    }
+
+    public List<Skill> getSkillList()
+    {
+        return skillsList;
+    }
+
+    public void takeDotDamage(int damage)
+    {
+        this.setHp(this.getHp() - damage);
+    }
+
+    public void setDotted(int count)
+    {
+        this.restDotCount += count;
+    }
+
+    public void takeDottedDamage()
+    {
+        if (this.restDotCount == 0)
+        {
+            this.isDotted = false;
+            System.out.println("중독이 해제되었습니다!");
+            return;
+        }
+        this.hp -= (int) (this.hp * 0.05);
+        this.restDotCount--;
+        System.out.println("남은 중독 데미지: " + this.restDotCount);
+    }
 
     @Override
-    public String toString() {
-        return "이름: " + name + ", Hp/MaxHp: " + hp+"/"+maxHp+", Mp/MaxMp: "+mp+"/"+maxMp +", 공격력: " + power + ", LV: "+ level;
+    public String toString()
+    {
+        return "이름: " + name + ", Hp/MaxHp: " + hp + "/" + maxHp + ", Mp/MaxMp: " + mp + "/" + maxMp + ", 공격력: " + power + ", LV: " + level;
     }
+
     public void setSkillPoint(int skillPoint)
     {
         this.skillPoint = skillPoint;
     }
 
-    public int getHp() {
+    public int getHp()
+    {
         return hp;
     }
 

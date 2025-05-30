@@ -2,9 +2,9 @@ package skills;
 
 import characters.Champion;
 
-public class SlowHeal extends Skill
+public class FastHeal extends Skill
 {
-    public SlowHeal()
+    public FastHeal()
     {
         super("Slow Heal", 0, 5);
     }
@@ -12,7 +12,7 @@ public class SlowHeal extends Skill
     @Override
     public void doSkill(Champion player, Champion target)
     {
-        target.setHp(target.getHp() + (this.getSkillLevel() * 10));
+        target.setHp(target.getHp() + (this.getSkillLevel() * 15));
         target.setMp(target.getMp() - this.getRequiredMp());
     }
 

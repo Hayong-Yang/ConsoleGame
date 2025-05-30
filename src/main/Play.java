@@ -1,24 +1,23 @@
 package main;
 
-import characters.Magician;
+import characters.Champion;
+import characters.Thief;
+import characters.Warrior;
+import gameOptions.Battle;
 import skills.Attack;
-import skills.FireBall;
-import skills.Skill;
-
-import javax.lang.model.util.SimpleTypeVisitor6;
 
 public class Play
 {
+    public static int gameTurn = 0;
+
     public static void main(String[] args)
     {
-        Magician magician = new Magician(100, 100, 10, 5, 100, 0, "minsu");
-        Magician hayong = new Magician(100, 100, 10, 5, 0, 0, "hayong");
+        Champion minsu = new Thief(100, 100, 10, 5, 5, 0, "minsu", 0);
 
-        Skill fireBall = new FireBall();
+        Battle battle = new Battle(minsu, gameTurn);
+        gameTurn = battle.playBattle(minsu);
 
-        fireBall.doSkill(magician, hayong);
-        System.out.println(hayong);
-
-
+        System.out.println("전투가 끝났습니다.");
+        System.out.println(gameTurn);
     }// main
 } //class
