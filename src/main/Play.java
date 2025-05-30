@@ -7,73 +7,107 @@ import gameOptions.Rest;
 import gameOptions.Training;
 import skills.Attack;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Play
 {
-    public static int gameTurn = 0;
+    public static Scanner scn = new Scanner(System.in);
+    public static int gameTurns = 1;
 
     public static void main(String[] args)
     {
-        Scanner sc = new Scanner(System.in);
-        int day=1;
 
-        System.out.print("당신의 닉네임을 입력하세요: ");
-        String nickname = sc.nextLine();
+        System.out.println("류지 월드에 오신 것을 환영합니다...");
+        System.out.println("----------------------------");
+        System.out.println("");
 
-//        직업선택
-        System.out.println("직업을 선택하세요");
-        System.out.println("1.전사 2.궁수 3.마법사 4.도적 ");
-        int input = sc.nextInt();
+        System.out.println("1. Warrior | 2. Thief | 3. Archer | 4. Magician");
 
-        Champion player = switch (input) {
-            case 1 -> new Warrior(120, 100, 4, 4, 2, 0, "전사", 0);
-            case 2 -> new Archer(100, 100, 5, 3, 3, 0, "궁수", 0);
-            case 3 -> new Magician(90, 120, 6, 2, 2, 0, "마법사", 0);
-            case 4 -> new Thief(100, 100, 4, 2, 5, 0, "도적", 0);
-            default -> throw new IllegalArgumentException("잘못된 선택입니다.");
-        };
+        System.out.print("당신의 캐릭터를 선택하세요: ");
+        int userChoice;
 
-        Hunting hunting = new Hunting();
-
-        boolean playing = true;
-
-        while (playing) {
-            System.out.println("\n===== " + day + "일차 아침입니다. =====");
-            System.out.println("무엇을 하시겠습니까?");
-            System.out.println("1. 사냥하기");
-            System.out.println("2. 대전하기");
-            System.out.println("3. 휴식하기");
-            System.out.println("4. 훈련하기");
-            System.out.println("5. 게임 종료");
-
-            int choice = sc.nextInt();
-
-            switch (choice) {
-                case 1 -> {
-                    hunting.startBattle(Hunting.player);
-                    day++;
+        select:
+        while (true)
+        {
+            try
+            {
+                int temp = Integer.parseInt(scn.nextLine());
+                if (temp >= 1 && temp <= 4)
+                {
+                    userChoice = temp;
+                    break;
+                } else
+                {
+                    System.out.println("1~4 사이의 숫자로 입력해주세요.");
+                    continue select;
                 }
-                case 2 -> {
-                    Battle battle = new Battle(player, day);  // player와 현재 날짜 전달
-                    day = battle.playBattle(player);
-                }
-                case 3 -> {
-                    Rest.rest(player);
-                    day++;
-                }
-                case 4 -> {
-                    Training.train(player);
-                    day++;
-                }
-                case 5 -> {
-                    System.out.println("게임을 종료합니다.");
-                    playing = false;
-                }
-                default -> System.out.println("잘못된 입력입니다.");
-            }
+
+            } catch (Exception e)
+            {
+                System.out.println("숫자로 입력해주세요. [1, 2, 3, 4]");
             }
         }
+
+
+        System.out.print("닉네임을 정해주세요: ");
+        String name = scn.nextLine();
+
+        Champion player = null;
+
+        switch (userChoice)
+        {
+            case 1 -> player = new Warrior(100, 100, 3, 5, 2, 0, name, gameTurns);
+            case 2 -> player = new Thief(100, 100, 3, 2, 5, 0, name, gameTurns);
+            case 3 -> player = new Archer(100, 100, 4, 3, 3, 0, name, gameTurns);
+            case 4 -> player = new Magician(100, 100, 6, 2, 1, 0, name, gameTurns);
+        }
+        player.speak();
+        System.out.println(player);
+
+        //main logic
+        Hunting hunting = new Hunting();
+        Battle battle = new Battle(player, gameTurns);
+        Training training = new Training();
+        Rest rest = new Rest();
+
+
+        while (player.isAlive())
+        {
+            System.out.println("day: " + gameTurns);
+            System.out.println("당신의 여정을 선택하세요..");
+            System.out.println("1. Hunting | 2. Battle | 3. Traning | 4. Rest");
+            int userChoice2 = Integer.parseInt(scn.nextLine());
+            switch (userChoice2)
+            {
+                case 1 ->
+                {
+                    hunting.startBattle(player, gameTurns);
+                    gameTurns++;
+                }
+                case 2 ->
+                {
+                    battle.playBattle(player);
+                    gameTurns++;
+                }
+                case 3 ->
+                {
+                    training.train(player);
+                    gameTurns++;
+                }
+                case 4 ->
+                {
+                    rest.rest(player);
+                    gameTurns++;
+                }
+            }
+            if (!player.isAlive())
+            {
+                System.out.printf("당신의 여정... %d일 패배하셨습니다... | %s", gameTurns, player);
+                break;
+            }
+
+        }// end of while();
 
     }// main
 } //class

@@ -40,6 +40,8 @@ public class Warrior extends Champion
 
             this.setMaxExp(this.getMaxExp() + 100);
             this.setSkillPoint(this.getSkillPoint() + 1);
+
+            System.out.println("level이 올랐습니다! (" + this.getLevel() + ")");
         }
     }// levelUp();
 
