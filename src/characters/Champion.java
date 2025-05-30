@@ -128,7 +128,14 @@ public abstract class Champion
     @Override
     public String toString()
     {
-        return "이름: " + name + ", Hp/MaxHp: " + hp + "/" + maxHp + ", Mp/MaxMp: " + mp + "/" + maxMp + ", 공격력: " + power + ", LV: " + level + ", EXP: " + exp + "/" + maxExp;
+        return "이름: " + name +
+                ", Hp/MaxHp: " + hp + "/" + maxHp +
+                ", Mp/MaxMp: " + mp + "/" + maxMp +
+                ", 공격력: " + power +
+                ", 방어력: " + defence +
+                ", 크리티컬: " + critical + "%" +
+                ", LV: " + level +
+                ", EXP: " + exp + "/" + maxExp;
     }
 
     public void setSkillPoint(int skillPoint)
