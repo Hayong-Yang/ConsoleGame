@@ -1,6 +1,9 @@
 package characters;
 
 import skills.Attack;
+import skills.FastHeal;
+import skills.PoisonDagger;
+import skills.ShadowStrike;
 
 public class Thief extends Champion
 {
@@ -8,9 +11,12 @@ public class Thief extends Champion
     public Thief(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name, int gameTurn)
     {
         super(maxHp, maxMp, power, defence, critical, exp, name, gameTurn);
+        addSkill(new ShadowStrike());     // 그림자 타격
+        addSkill(new PoisonDagger());     // 독 단검
+        addSkill(new FastHeal());
     }
 
-    //체력 80, 마나 50, 공격력 20, 방어력 5, 크리티컬 확률 30%
+
     @Override
     public void speak()
     {
@@ -24,13 +30,12 @@ public class Thief extends Champion
     }
 
     @Override
-    public void levelUp(int exp)
-    {
+    public void levelUp(int exp) {
         this.setExp(this.getExp() + exp);
-        if (this.getExp() >= this.getMaxExp())
-        {
-            int rest = this.getMaxExp() - this.getExp();
-            this.setExp(rest);
+
+        while (this.getExp() >= this.getMaxExp()) {
+            // 현재 경험치에서 다음 레벨까지 필요 경험치 차감
+            this.setExp(this.getExp() - this.getMaxExp());
 
             this.setLevel(this.getLevel() + 1);
             this.setMaxHp(this.getMaxHp() + 20);
@@ -39,10 +44,11 @@ public class Thief extends Champion
             this.setDefence(this.getDefence() + 2);
             this.setCritical(this.getCritical() + 5);
 
-            this.setMaxExp(this.getMaxExp() + 100);
-            this.setSkillPoint(this.getSkillPoint() + 1);
+            // 다음 레벨의 필요 경험치 재계산
+            int nextMaxExp = 100 + 100 * (this.getLevel() - 1);
+            this.setMaxExp(nextMaxExp);
 
-            System.out.println("level이 올랐습니다! (" + this.getLevel() + ")");
+            System.out.println("level이 올랐습니다! (" + this.getLevel() + ")" + this);
         }
     }// levelUp();
 

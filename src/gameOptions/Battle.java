@@ -123,7 +123,13 @@ public class Battle
                         System.out.println("보유한 스킬이 없습니다.");
                         continue;
                     }
-                    this.player.getSkillsList().forEach(System.out::println);
+                    List<Skill> skills = this.player.getSkillsList();
+
+                    System.out.println("사용할 스킬을 선택하세요:");
+                    for (int i = 0; i < skills.size(); i++) {
+                        System.out.printf("%d. %s\n", i + 1, skills.get(i));
+                    }
+
                     int skillChoice = Integer.parseInt(scn.nextLine());
                     this.player.getSkillsList().get(skillChoice - 1).doSkill(player, enemy);
 

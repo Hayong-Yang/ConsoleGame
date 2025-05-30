@@ -10,13 +10,18 @@ public class PoisonDagger extends Skill {
 
     @Override
     public void doSkill(Champion player, Champion target) {
-        int baseDamage = (int)((player.getPower() * 0.2) * this.getDamage());
+        if (player.getMp() < this.getRequiredMp()) {
+            System.out.println("마나가 부족하여 스킬을 사용하지 못했습니다.");
+            return;
+        }
+        int totalDamage = (int)((player.getPower() * 0.2) * this.getDamage());
         int poisonBonus = 5 + this.getSkillLevel();  // 중독 추가 피해
 
-        target.setHp(target.getHp() - (baseDamage + poisonBonus));
+        System.out.println(player.getName() + "이(가) Poison Dagger를 사용하여 " +
+                totalDamage + " + " + poisonBonus + " 중독 피해를 입혔습니다!");
+
+        target.setHp(target.getHp() - (totalDamage + poisonBonus));
         player.setMp(player.getMp() - (this.getRequiredMp() + this.getSkillLevel() * 2));
 
-        System.out.println(player.getName() + "이(가) Poison Dagger를 사용하여 " +
-                baseDamage + " + " + poisonBonus + " 중독 피해를 입혔습니다!");
     }
 }
