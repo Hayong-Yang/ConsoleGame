@@ -1,6 +1,5 @@
 package characters;
 
-import skills.Attack;
 import skills.FastHeal;
 import skills.PoisonDagger;
 import skills.ShadowStrike;
@@ -51,5 +50,4 @@ public class Thief extends Champion
             System.out.println("level이 올랐습니다! (" + this.getLevel() + ")" + this);
         }
     }// levelUp();
-
 }// end of class{};
