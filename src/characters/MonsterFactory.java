@@ -36,5 +36,6 @@ public class MonsterFactory {
         // 랜덤 선택
         Random rand = new Random();
         return possibleMonsters.get(rand.nextInt(possibleMonsters.size()));
+
     }
 }

@@ -2,7 +2,8 @@ package characters;
 
 import skills.Attack;
 
-public class Archer extends Champion{
+public class Archer extends Champion
+{
 
     public Archer(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name, int gameTurn)
     {
@@ -10,12 +11,14 @@ public class Archer extends Champion{
     }
 
     @Override
-    public void speak() {
+    public void speak()
+    {
         System.out.println("바람은 계산하는 것이 아니라 극복하는 것이다.");
     }
 
     @Override
-    public void injured() {
+    public void injured()
+    {
         System.out.println("싸늘하다. 가슴에 화살이 날아와 꽂힌다...");
     }
 

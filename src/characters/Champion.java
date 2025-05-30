@@ -102,6 +102,11 @@ public abstract class Champion
         return skillPoint;
     }
 
+    public List<Skill> getSkillList()
+    {
+        return skillsList;
+    }
+
     public void takeDotDamage(int damage)
     {
         this.setHp(this.getHp() - damage);
