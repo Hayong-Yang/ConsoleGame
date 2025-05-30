@@ -40,4 +40,5 @@ public class Gobblin extends Champion
             this.setSkillPoint(this.getSkillPoint() + 1);
         }
     }// levelUp();
+
 }
