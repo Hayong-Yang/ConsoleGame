@@ -10,8 +10,8 @@ public class Hunting {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public void startBattle(Champion player) {
-        Champion monster = MonsterFactory.createRandomMonster(); // 랜덤 몬스터 생성
+    public void startBattle(Champion player, int gameTurn) {
+        Champion monster = MonsterFactory.createRandomMonster(gameTurn); // 랜덤 몬스터 생성
 
         System.out.println("전투 시작!");
         System.out.println("플레이어: " + player.getName());
