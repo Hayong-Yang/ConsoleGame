@@ -14,12 +14,14 @@ public class Magician extends Champion
     public void speak()
     {
         System.out.println("대마법사 " + this.getName() + "님이 행차하신다!!!");
+        System.out.println();
     }
 
     @Override
     public void injured()
     {
         System.out.println("네가 감히 대 마법사 " + this.getName() + "님을 건드리다니!");
+        System.out.println();
     }
 
     @Override
