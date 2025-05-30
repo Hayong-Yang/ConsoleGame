@@ -77,7 +77,14 @@ public abstract class Champion
 
     public abstract void injured();
 
-    public Attack defaultAttack = (Champion target) -> target.setHp(this.isCritical() ? (target.getHp() - ((int)(Math.max(this.getPower() - target.getDefence(), 0))) * 2 ): (target.getHp() - ((int)(Math.max(this.getPower() - target.getDefence(), 0)))));
+    public Attack defaultAttack = (Champion target) -> {
+        int baseDamage = Math.max(this.getPower() - target.getDefence(), 0);
+        int damage = this.isCritical() ? baseDamage * 2 : baseDamage;
+
+        target.setHp(target.getHp() - damage);
+
+        System.out.printf("💥 %s이(가) %s에게 %d의 피해를 입혔습니다.\n", this.getName(), target.getName(), damage);
+    };
 
     public boolean isAlive()
     {
@@ -93,6 +100,11 @@ public abstract class Champion
     public int getSkillPoint()
     {
         return skillPoint;
+    }
+
+    public List<Skill> getSkillList()
+    {
+        return skillsList;
     }
 
     public void takeDotDamage(int damage)

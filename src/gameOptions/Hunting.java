@@ -10,14 +10,20 @@ public class Hunting {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public void startBattle(Champion player) {
-        Champion monster = MonsterFactory.createRandomMonster(); // 랜덤 몬스터 생성
+    public void startBattle(Champion player, int gameTurn) {
+        Champion monster = MonsterFactory.createRandomMonster(gameTurn); // 랜덤 몬스터 생성
 
         System.out.println("전투 시작!");
         System.out.println("플레이어: " + player.getName());
+        player.speak();
         System.out.println("몬스터: " + monster.getName());
+        monster.speak();
 
         while (player.isAlive() && monster.isAlive()) {
+            // 상태 출력
+            System.out.println("\n플레이어 상태 → " + player);
+            System.out.println("몬스터 상태 → " + monster);
+
             // 1. 플레이어 턴
             System.out.println("\n[당신의 턴]");
             playerTurn(player, monster);
@@ -45,6 +51,7 @@ public class Hunting {
         switch (choice) {
             case 1 -> {
                 player.defaultAttack.attack(monster); // 직접 객체의 attack 사용
+                monster.injured(); // 몬스터가 데미지를 입었을 때 대사 출력
             }
             case 2 -> {
                 useSkill(player, monster);
@@ -52,12 +59,14 @@ public class Hunting {
             default -> {
                 System.out.println("잘못된 입력입니다. 일반 공격을 수행합니다.");
                 player.defaultAttack.attack(monster); // 기본 공격
+                monster.injured();
             }
         }
     }
 
     private void monsterTurn(Champion monster, Champion player) {
-        monster.defaultAttack.attack(player); // 몬스터도 직접 attack
+        monster.defaultAttack.attack(player);
+        player.injured(); // 플레이어도 공격 당할 시 반응 출력
     }
 
     private void useSkill(Champion player, Champion target) {

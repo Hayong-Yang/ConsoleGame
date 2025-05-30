@@ -4,6 +4,7 @@ import characters.*;
 import gameOptions.Battle;
 import gameOptions.Hunting;
 import gameOptions.Rest;
+import gameOptions.Training;
 import skills.Attack;
 
 import java.util.Scanner;
@@ -16,6 +17,9 @@ public class Play
     {
         Scanner sc = new Scanner(System.in);
         int day=1;
+
+        System.out.print("당신의 닉네임을 입력하세요: ");
+        String nickname = sc.nextLine();
 
 //        직업선택
         System.out.println("직업을 선택하세요");
@@ -31,7 +35,6 @@ public class Play
         };
 
         Hunting hunting = new Hunting();
-        Battle battle = new Battle(player,0);
 
         boolean playing = true;
 
@@ -41,27 +44,29 @@ public class Play
             System.out.println("1. 사냥하기");
             System.out.println("2. 대전하기");
             System.out.println("3. 휴식하기");
-            System.out.println("4. 게임 종료");
+            System.out.println("4. 훈련하기");
+            System.out.println("5. 게임 종료");
 
             int choice = sc.nextInt();
 
             switch (choice) {
                 case 1 -> {
-                    hunting.startBattle(player);
+                    hunting.startBattle(Hunting.player);
                     day++;
                 }
                 case 2 -> {
-                    Champion enemy = battle.createEnemy();
-                    System.out.println("⚔️ 대전 상대로 " + enemy.getName() + "이(가) 등장했습니다!");
-
-                    hunting.startBattle(player, enemy);
-                    day++;
+                    Battle battle = new Battle(player, day);  // player와 현재 날짜 전달
+                    day = battle.playBattle(player);
                 }
                 case 3 -> {
                     Rest.rest(player);
                     day++;
                 }
                 case 4 -> {
+                    Training.train(player);
+                    day++;
+                }
+                case 5 -> {
                     System.out.println("게임을 종료합니다.");
                     playing = false;
                 }
