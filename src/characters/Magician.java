@@ -1,6 +1,11 @@
 package characters;
 
 import skills.Attack;
+import skills.FastHeal;
+import skills.FireBall;
+import skills.Meteor;
+
+import javax.swing.plaf.synth.SynthListUI;
 
 public class Magician extends Champion
 {
@@ -8,6 +13,9 @@ public class Magician extends Champion
     public Magician(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name, int gameTurn)
     {
         super(maxHp, maxMp, power, defence, critical, exp, name, gameTurn);
+        this.addSkill(new FastHeal());
+        this.addSkill(new Meteor());
+        this.addSkill(new FireBall());
     }
 
     @Override
