@@ -1,5 +1,6 @@
 package characters;
 
+import main.Play;
 import skills.Attack;
 import skills.Skill;
 
@@ -10,6 +11,12 @@ import java.util.Set;
 
 public abstract class Champion
 {
+    private int id;   // DB primary key
+
+    // id getter/setter
+    public int getId()          { return id; }
+    public void setId(int id)   { this.id = id; }
+
     private final int skillListSize = 3;
 
     private int hp;
@@ -44,6 +51,30 @@ public abstract class Champion
         this.hp = this.maxHp;
         this.mp = this.maxMp;
         this.level = 1;
+    }
+
+    public Player toPlayer() {
+        Player p = new Player();
+        p.setNickname(this.getName());
+
+        p.setId(this.id);
+
+        // job 컬럼은 직업명 문자열인데, Champion의 구체 클래스를 통해 결정
+        // 클래스 이름을 가져오거나, 하위 클래스에서 getJobName() 같은 메서드가 있다면 사용하세요
+        p.setJob(this.getClass().getSimpleName());
+
+        p.setLevel(this.getLevel());
+        p.setExp(this.getExp());
+        p.setHp(this.getHp());
+        p.setMaxHp(this.getMaxHp());
+        p.setMp(this.getMp());
+        p.setMaxMp(this.getMaxMp());
+        p.setAtk(this.getPower());       // power -> atk
+        p.setDefense(this.getDefence()); // defence -> defense
+        p.setCritical((float)this.getCritical()); // critical은 float이므로 형변환
+        p.setDay(Play.gameTurns);
+
+        return p;
     }
 
     public List<Skill> getSkillsList()
