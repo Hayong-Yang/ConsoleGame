@@ -69,12 +69,7 @@ public class Training {
         }
 
         c.setSkillPoint(c.getSkillPoint() + 1);
-        recover(c);
     }
 
-    private static void recover(Champion c) {
-        c.setHp(c.getMaxHp());
-        c.setMp(c.getMaxMp());
-    }
 }
 

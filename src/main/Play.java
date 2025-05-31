@@ -1,10 +1,7 @@
 package main;
 
 import characters.*;
-import gameOptions.Battle;
-import gameOptions.Hunting;
-import gameOptions.Rest;
-import gameOptions.Training;
+import gameOptions.*;
 import skills.Attack;
 
 import java.util.Objects;
@@ -70,11 +67,20 @@ public class Play
         Battle battle = new Battle(player, gameTurns);
         Training training = new Training();
         Rest rest = new Rest();
+        SpecialBattle specialBattle = new SpecialBattle();
 
 
         while (player.isAlive())
         {
             System.out.println("day: " + gameTurns);
+
+            // 특수 몬스터 등장 조건
+            if (gameTurns == 10 || gameTurns == 15 || gameTurns == 20 || gameTurns == 25) {
+                specialBattle.fight(player, gameTurns);
+                gameTurns++;
+                continue;
+            }
+
             System.out.println("당신의 여정을 선택하세요..");
             System.out.println("1. Hunting | 2. Battle | 3. Traning | 4. Rest");
             int userChoice2 = Integer.parseInt(scn.nextLine());
