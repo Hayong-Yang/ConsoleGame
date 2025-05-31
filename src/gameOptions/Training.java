@@ -71,8 +71,10 @@ public class Training {
 
         c.setSkillPoint(c.getSkillPoint() + 1);
 
+
         System.out.println("\n📊 [훈련 후 캐릭터 상태]");
         System.out.println(c);
     }
+
 }
 
