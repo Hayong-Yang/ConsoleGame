@@ -19,15 +19,16 @@ public abstract class Skill
 
     public abstract void doSkill(Champion player, Champion target);
 
+    public String toString() {
+        return String.format("%s (MP:%d, Lv:%d, DMG:%d)", name, requiredMp, skillLevel, damage);
+    }
+
     public String getName()
     {
         return name;
     }
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     public int getDamage()
     {

@@ -43,32 +43,37 @@ public class Training {
     }
 
     public static void train(Champion c, TrainingType type) {
+        final int POWER_INC = 3;
+        final int DEFENCE_INC = 3;
+        final int CRIT_INC = 3;
+        final int MAX_HP_INC = 10;
+        final int MAX_MP_INC = 5;
 
-        final int POWER_INC    = 3;
-        final int DEFENCE_INC  = 3;
-        final int CRIT_INC     = 3;
-        final int MAX_HP_INC   = 10;
-        final int MAX_MP_INC   = 5;
+        System.out.println(); // 줄바꿈
 
         switch (type) {
             case STRENGTH -> {
                 c.setPower(c.getPower() + POWER_INC);
                 c.setMaxHp(c.getMaxHp() + MAX_HP_INC);
-                System.out.printf("%s 힘 훈련 완료! 💪%n", c.getName());
+                System.out.printf("💪 %s 힘 훈련 완료! (+%d 공격력, +%d 최대 HP)%n", c.getName(), POWER_INC, MAX_HP_INC);
             }
             case DEFENCE -> {
                 c.setDefence(c.getDefence() + DEFENCE_INC);
                 c.setMaxHp(c.getMaxHp() + MAX_HP_INC);
-                System.out.printf("%s 방어 훈련 완료! 🛡️%n", c.getName());
+                System.out.printf("🛡️ %s 방어 훈련 완료! (+%d 방어력, +%d 최대 HP)%n", c.getName(), DEFENCE_INC, MAX_HP_INC);
             }
             case AGILITY -> {
                 c.setCritical(c.getCritical() + CRIT_INC);
                 c.setMaxMp(c.getMaxMp() + MAX_MP_INC);
-                System.out.printf("%s 민첩 훈련 완료! 🗡️%n", c.getName());
+                System.out.printf("🗡️ %s 민첩 훈련 완료! (+%d 치명타 확률, +%d 최대 MP)%n", c.getName(), CRIT_INC, MAX_MP_INC);
             }
         }
 
         c.setSkillPoint(c.getSkillPoint() + 1);
+
+
+        System.out.println("\n📊 [훈련 후 캐릭터 상태]");
+        System.out.println(c);
     }
 
 }

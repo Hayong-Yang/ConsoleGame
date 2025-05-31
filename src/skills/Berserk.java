@@ -12,6 +12,11 @@ public class Berserk extends Skill
     @Override
     public void doSkill(Champion player, Champion target)
     {
+        if (player.getMp() < this.getRequiredMp()) {
+            System.out.println("마나가 부족하여 스킬을 사용하지 못했습니다.");
+            return;
+        }
+
         boolean isCrit = player.isCritical();
         double multiplier = isCrit ? 1.6 : 1.0;
 
