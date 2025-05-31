@@ -2,6 +2,9 @@ package characters;
 
 import org.w3c.dom.events.EventTarget;
 import skills.Attack;
+import skills.Berserk;
+import skills.PowerStrike;
+import skills.ShieldBash;
 
 public class Warrior extends Champion
 {

@@ -120,10 +120,14 @@ public class Battle
                         System.out.println("보유한 스킬이 없습니다.");
                         continue;
                     }
-                    AtomicInteger skillCount = new AtomicInteger(1);
-                    this.player.getSkillsList().forEach(skill -> System.out.printf("%s (%d) | ", skill.getName(), skillCount.getAndIncrement()));
-                    System.out.println();
-                    System.out.print("스킬을 선택해주세요: ");
+                    List<Skill> skills = this.player.getSkillsList();
+
+                    System.out.println("사용할 스킬을 선택하세요:");
+                    for (int i = 0; i < skills.size(); i++) {
+                        System.out.printf("%d. %s\n", i + 1, skills.get(i));
+                    }
+
+
                     int skillChoice = Integer.parseInt(scn.nextLine());
                     System.out.println();
                     this.player.getSkillsList().get(skillChoice - 1).doSkill(player, enemy);

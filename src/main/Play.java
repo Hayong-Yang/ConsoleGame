@@ -76,7 +76,7 @@ public class Play
         {
             System.out.println("day: " + gameTurns);
             System.out.println("당신의 여정을 선택하세요..");
-            System.out.println("1. Hunting | 2. Battle | 3. Traning | 4. Rest");
+            System.out.println("1. Hunting | 2. Battle | 3. Training | 4. Rest");
             int userChoice2 = Integer.parseInt(scn.nextLine());
             switch (userChoice2)
             {
