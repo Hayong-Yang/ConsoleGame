@@ -1,6 +1,11 @@
 package characters;
 
 import skills.Attack;
+import skills.FastHeal;
+import skills.FireBall;
+import skills.Meteor;
+
+import javax.swing.plaf.synth.SynthListUI;
 
 public class Magician extends Champion
 {
@@ -8,18 +13,23 @@ public class Magician extends Champion
     public Magician(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name, int gameTurn)
     {
         super(maxHp, maxMp, power, defence, critical, exp, name, gameTurn);
+        this.addSkill(new FastHeal());
+        this.addSkill(new Meteor());
+        this.addSkill(new FireBall());
     }
 
     @Override
     public void speak()
     {
         System.out.println("대마법사 " + this.getName() + "님이 행차하신다!!!");
+        System.out.println();
     }
 
     @Override
     public void injured()
     {
         System.out.println("네가 감히 대 마법사 " + this.getName() + "님을 건드리다니!");
+        System.out.println();
     }
 
     @Override
