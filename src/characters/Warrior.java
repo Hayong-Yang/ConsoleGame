@@ -4,8 +4,9 @@ import org.w3c.dom.events.EventTarget;
 import skills.Berserk;
 import skills.PowerStrike;
 import skills.ShieldBash;
-
 import java.util.Scanner;
+import skills.Attack;
+
 
 public class Warrior extends Champion
 {

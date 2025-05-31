@@ -55,30 +55,37 @@ public class Play {
         Rest     rest     = new Rest();
 
         while (player.isAlive()) {
+    System.out.printf("day: %d%n", gameTurns);
+    System.out.println("당신의 여정을 선택하세요..");
+    System.out.println("1. Hunting | 2. Battle | 3. Training | 4. Rest");
 
-            System.out.printf("day: %d%n", gameTurns);
-            System.out.println("1. Hunting | 2. Battle | 3. Training | 4. Rest");
+    int sel;
+    try {
+        sel = Integer.parseInt(scn.nextLine());
 
-            int sel;
-            try { sel = Integer.parseInt(scn.nextLine()); }
-            catch (Exception e) { System.out.println("1~4 입력!"); continue; }
-
-            switch (sel) {
-                case 1 -> hunting.startBattle(player, gameTurns);
-                case 2 -> battle.playBattle(player);
-                case 3 -> training.train(player);
-                case 4 -> rest.rest(player);
-                default -> { System.out.println("1~4 입력!"); continue; }
-            }
-            gameTurns++;
-
-            /* --- DB UPDATE (id 포함) --- */
-            PlayerDAO.updatePlayer(player.toPlayer());
-
-            if (!player.isAlive()) {
-                System.out.printf("당신의 여정... %d일 패배하셨습니다... | %s%n",
-                        gameTurns, player);
+        switch (sel) {
+            case 1 -> hunting.startBattle(player, gameTurns);
+            case 2 -> battle.playBattle(player);
+            case 3 -> training.train(player);
+            case 4 -> rest.rest(player);
+            default -> {
+                System.out.println("1~4 입력!");
+                continue; // 잘못된 입력이므로 턴 증가 X
             }
         }
+
+        gameTurns++; // 유효한 선택에 대해서만 턴 증가
+
+        /* DB 업데이트 */
+        PlayerDAO.updatePlayer(player.toPlayer());
+
+    } catch (Exception e) {
+        System.out.println("숫자로 입력해주세요. [1~4]");
+    }
+
+    if (!player.isAlive()) {
+        System.out.printf("당신의 여정... %d일 패배하셨습니다... | %s%n", gameTurns, player);
+    }
+}
     }
 }

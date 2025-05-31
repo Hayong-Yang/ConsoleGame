@@ -27,7 +27,7 @@ public class FireBall extends Skill
         int totalDamage = (int) ((player.getPower() * 0.25) * this.getDamage() * multiplier - target.getDefence());
         System.out.printf("데미지 %d가 들어갔습니다 효과는 굉장했다!\n", totalDamage);
 
-        target.setHp((int)(target.getHp() - totalDamage));
-        player.setMp(player.getMp() - (this.getRequiredMp() + this.getSkillLevel() * 2));
+        target.setHp(target.getHp() - totalDamage);
+        player.setMp(player.getMp() - this.getRequiredMp());
     }// end of doSkill();
 }// end of class{};
