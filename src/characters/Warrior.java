@@ -1,16 +1,22 @@
 package characters;
 
 import org.w3c.dom.events.EventTarget;
-import skills.Attack;
 import skills.Berserk;
 import skills.PowerStrike;
 import skills.ShieldBash;
+import java.util.Scanner;
+import skills.Attack;
+
 
 public class Warrior extends Champion
 {
     public Warrior(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name, int gameTurn)
     {
         super(maxHp, maxMp, power, defence, critical, exp, name, gameTurn);
+
+        this.addSkill(new Berserk());
+        this.addSkill(new PowerStrike());
+        this.addSkill(new ShieldBash());
     }
 
     @Override
@@ -47,5 +53,7 @@ public class Warrior extends Champion
             System.out.println("level이 올랐습니다! (" + this.getLevel() + ")");
         }
     }// levelUp();
+
+
 
 }// end of class{};
