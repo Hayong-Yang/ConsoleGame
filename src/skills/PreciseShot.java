@@ -13,8 +13,12 @@ public class PreciseShot extends Skill
     @Override
     public void doSkill(Champion player, Champion target)
     {
+        if (player.getMp() < this.getRequiredMp()) {
+            System.out.println("마나가 부족하여 스킬을 사용하지 못했습니다.");
+            return;
+        }
         boolean isCrit = player.isCritical();
-        double multiplier = isCrit ? 1.3 : 1.0;
+        double multiplier = isCrit ? 1.2 : 1.0;
         if (isCrit){
             System.out.println("굉장히 따끔할 거야~");
         }
