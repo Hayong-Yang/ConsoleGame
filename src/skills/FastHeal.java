@@ -12,8 +12,12 @@ public class FastHeal extends Skill
     @Override
     public void doSkill(Champion player, Champion target)
     {
-        target.setHp(target.getHp() + (this.getSkillLevel() * 15));
-        target.setMp(target.getMp() - this.getRequiredMp());
-    }
-
+        if (player.getMp() < this.getRequiredMp())
+        {
+            System.out.println("마나가 부족하여 스킬을 사용하지 못했습니다.");
+            return;
+        }
+        target.setHp(target.getHp() + 10 * player.getPower());
+        player.setMp(player.getMp() - this.getRequiredMp());
+    }// end of doSkill();
 }// end of class{};
