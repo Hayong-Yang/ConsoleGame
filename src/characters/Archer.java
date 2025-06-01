@@ -1,6 +1,9 @@
 package characters;
 
+import skills.ArrowRain;
 import skills.Attack;
+import skills.ExplosiveArrow;
+import skills.PreciseShot;
 
 public class Archer extends Champion
 {
@@ -8,6 +11,9 @@ public class Archer extends Champion
     public Archer(int maxHp, int maxMp, int power, int defence, int critical, int exp, String name, int gameTurn)
     {
         super(maxHp, maxMp, power, defence, critical, exp, name, gameTurn);
+        this.addSkill(new ArrowRain());
+        this.addSkill(new ExplosiveArrow());
+        this.addSkill(new PreciseShot());
     }
 
     @Override
